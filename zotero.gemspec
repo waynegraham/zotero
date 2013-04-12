@@ -11,7 +11,9 @@ Gem::Specification.new do |spec|
   spec.description   = %q{A Ruby wrapper for the Zotero API}
   spec.summary       = spec.description
   spec.homepage      = "https://github.com/waynegraham/zotero"
-  spec.license       = ["Apache 2"]
+  spec.license       = "Apache 2"
+
+  spec.signing_key = File.expand_path("~/.gem/private_key.pem") if $0 =~ /gem\z/
 
   post_install_message =<<eos
 ********************************************************************************
