@@ -8,10 +8,22 @@ Gem::Specification.new do |spec|
   spec.version       = Zotero::VERSION
   spec.authors       = ["Wayne Graham"]
   spec.email         = ["wayne.graham@virginia.edu"]
-  spec.description   = %q{TODO: Write a gem description}
-  spec.summary       = %q{TODO: Write a gem summary}
-  spec.homepage      = ""
-  spec.license       = "MIT"
+  spec.description   = %q{A Ruby wrapper for the Zotero API}
+  spec.summary       = spec.description
+  spec.homepage      = "https://github.com/waynegraham/zotero"
+  spec.license       = ["Apache 2"]
+
+  post_install_message =<<eos
+********************************************************************************
+
+  You should follow @wayne_graham on Twitter for announcement and updates about
+  the gem. https://twitter.com/wayne_graham
+
+  Please direct any issues to the issue tracker on Github 
+  https://github.com/waynegraham/zotero/issues
+
+********************************************************************************
+eos
 
   spec.files         = `git ls-files`.split($/)
   spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
@@ -20,7 +32,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.3"
   spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec"
 
-  
+  spec.add_dependency 'faraday', ['~> 0.8', '< 0.10']
 end
