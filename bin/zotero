@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'awesome_print'
+
+$:.unshift(File.join(File.dirname(__FILE__), "/../lib"))
+require 'zotero'
+
+opts = {
+  :format => :keys
+}
+
+OptionParser.new do |o| do
+  opts.banner = "USAGE: #{$0} [options] input"
+
+  opts.on('--api-key [APIKEY]', 'API key') do |f|
+    opts[:api_key] = f
+  end
+end.parse!
+
+client = Zotero::Client.new(opts)
+input = ARGV.first
+
+ap input

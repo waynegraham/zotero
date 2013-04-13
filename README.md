@@ -37,6 +37,18 @@ end
 client = Zotero::Client.new
 ```
 
+### Command-line
+
+```
+zotero --api-key=APIKEY "search query"
+```
+
+## Testing
+
+```
+rake test API_KEY=YOURKEY
+```
+
 ## Contributing
 
 1. Fork it
