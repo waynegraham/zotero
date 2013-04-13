@@ -18,7 +18,18 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Configuration
+
+```ruby
+Zotero.configure do |config|
+  config.api_key        = YOUR_API_KEY
+  config.library_id     = YOUR_LIBRARY_ID
+  config.library_type   = YOUR_LIBRARY_TYPE
+  config.collection_key = COLLECTION_KEY
+  config.library_slug   = YOUR_LIBRARY_SLUG
+end
+
+```
 
 ## Contributing
 

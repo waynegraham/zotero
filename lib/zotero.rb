@@ -1,5 +1,6 @@
 require "zotero/version"
+require "zotero/configuration"
 
 module Zotero
-  # Your code goes here...
+  extend Configuration
 end
