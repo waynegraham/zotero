@@ -1,24 +1,35 @@
 module Zotero
   module Configuration
-    VALID_CONNECTION_KEYS = [:endpoint, :user_agent, :method].freeze
-    VALID_OPTIONS_KEYS    = [:api_key, :format, :collection_key, :library_type, :library_id, :library_slug].freeze
-    VALID_CONFIG_KEYS     = VALID_CONNECTION_KEYS + VALID_OPTIONS_KEYS
+    VALID_CONNECTION_KEYS  = [:endpoint, :user_agent, :method, :adapter].freeze
+    VALID_OPTIONS_KEYS     = [:api_key, :format, :collection_key, :library_type, :library_id, :library_slug].freeze
+    VALID_CONFIG_KEYS      = VALID_CONNECTION_KEYS + VALID_OPTIONS_KEYS
 
-    DEFAULT_ENDPOINT      = "https://api.zotero.org"
-    DEFAULT_METHOD        = :get
-    DEFAULT_USER_AGENT    = "Zotero API Ruby Gem #{Zotero::VERSION}".freeze
+    DEFAULT_ENDPOINT       = "https://api.zotero.org"
+    DEFAULT_USER_AGENT     = "Zotero API Ruby Gem #{Zotero::VERSION}".freeze
+    DEFAULT_METHOD         = :get
+    DEFAULT_ADAPTER        = :net_http
+
+
     DEFAULT_COLLECTION_KEY = nil
     DEFAULT_LIBRARY_TYPE   = nil
     DEFAULT_LIBRARY_ID     = nil
     DEFAULT_LIBRARY_SLUG   = nil
 
-    DEFAULT_API_KEY       = nil
-    DEFAULT_FORMAT        = :keys
+    DEFAULT_API_KEY        = nil
+    DEFAULT_FORMAT         = :keys
 
     attr_accessor *VALID_CONFIG_KEYS
 
     def self.extended(base)
       base.reset
+    end
+
+    def configure
+      yield self
+    end
+
+    def options
+      Hash[ * VALID_CONFIG_KEYS.map { |key| [key, send(key)] }.flatten ]
     end
 
     def reset

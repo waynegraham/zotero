@@ -31,6 +31,12 @@ end
 
 ```
 
+### Clients
+
+```ruby
+client = Zotero::Client.new
+```
+
 ## Contributing
 
 1. Fork it
