@@ -1,7 +1,21 @@
 require 'spec_helper'
 
+ after do
+    Zotero.reset
+  end
+
+
 describe 'configuration' do
 
+  Zotero::Configuration::VALID_CONFIG_KEYS.each do |key|
+    it "should set the #{key}" do
+      Zotero.configure do |config|
+        config.send("#{key}=", key)
+        Zotero.send(key).should be key
+      end
+    end
+  end
+ 
   describe 'api_key' do
     it 'should return a default key' do
       Zotero::api_key.should be Zotero::Configuration::DEFAULT_API_KEY
